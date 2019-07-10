@@ -1,7 +1,12 @@
 language: node_js
 
 node_js:
-  - "9"
+  - "10.16.0"
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 dist: trusty
 
@@ -12,19 +17,19 @@ branches:
   - master
 
 before_script:
-  - npm install -g @angular/cli
+  - yarn global add @angular/cli
 
 script:
 - ng lint
 - ng test --watch=false --browsers=ChromeHeadless
 
 before_deploy:
-  - npm install netlify-cli -g
-  - npm run build --prod
+  - yarn global add netlify-cli
+  - ng build --prod
 
 deploy:
   provider: script
-  script: netlify deploy -s $NETLIFY_SITE_ID -t $NETLIFY_ACCESS_TOKEN -p --dir ./build
+  script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./build
   skip_cleanup: true
   on:
     branch: master

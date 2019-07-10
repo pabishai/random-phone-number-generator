@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1a2b542f-cd51-4da1-b7e8-2c0935b2e395/deploy-status)](https://app.netlify.com/sites/random-phonenumbers/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1a2b542f-cd51-4da1-b7e8-2c0935b2e395/deploy-status)](https://app.netlify.com/sites/random-phonenumbers/deploys) [![Build Status](https://travis-ci.org/PAbishai/random-phone-number-generator.svg?branch=master)](https://travis-ci.org/PAbishai/random-phone-number-generator)
 
 # Random Phone Number Generator
 This is an application that generates random (all starting with zero), unique 10 digit phone numbers.

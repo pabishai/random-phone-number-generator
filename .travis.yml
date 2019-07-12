@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-- 10.16.0
+- 12.16.0
 env:
   global:
   - secure: oEApyXYvFp5YhmOpgOWo8upOhmXvhjAL4S9olbgaYoaSbapccdL/pATyRgpdMrl2ZzqzNu31df4xRuvtTCGxtQhMUgF7D2+P9MTLEyzywM+Jp+ZqmBl4bBAy/BylIJnubvp0eSlS4fxs9Qo09Fx/nyg/OXyjlbxE7EnDgVrwRG+d8dHob7CdWTZJugq6Ry9JBWwNGKsw+ksgFZohM7VqhIYD0aStc9iE/CF6oPhubUVlF35AX5YBdZZ1dXV//BWPdBhMpAKXgzJdTpS08YeSLuk0xlJlaFughSpcEfcvw9W+oeF/zlXQZJUpAhq2YQdouYgaGwtMrIL+c1Kd3hDiVzImMLM8/5hQsY80RovcauskqpWB3KP4ZQoXSkp0bvVABm593ZE8O3Y6B/5tqbv3jibG7nwHNna8vL9Tde2kldEAMlL04emPNu2NavCnCz8+g3AucEx2xS6K4vQ72Lqk9El2bi98cwgCLue9QDb2k6+0zjv2WM4NqkBBmdXbBzDcDLIebtuJX/wrb5BOTYd/1foBJJaryH05XK1tLhsSX/ZRgxyXVUUwmHFjV4HJ8ZP8Dj/IxaaxM0lE2KjLDQ9sw8wsgV4912iPRlCLRxXSzk3VaBofrf9/2G/Z0so8a8NdUTmGuy27KGmCxqXXsTT4+eKhm7d+D9xy1zXiFTWj3M8=
   - secure: PoSHSgssbs1/ZGVtmu5aGxmfwlWtIsuIZ1cbllA2Yu100OxSHSSQKQ3BERMUq24cyXW6o0WA1n8hpHJK4is7beD68tkyR4hIu9h4iovtvkkXxD2v1uzXZHzimalPV6dAVVT8+jGlbv78v8N/QaWvbmnforaJqWE/HFfgZLfXFbgRzH6Tqd1TRf1KY6gvze8Eh/DI9afN8lZFPtfuXiACf7oVhTBP8fHvBXXH3Q9B4k4HH4Dn1tnYdcL6afEWlDlCwZR9PylLaI9brFUfDmN2iMA5WOKfn0TTQHWlEGLyXONkUvM1KaZADhOHZD+tCJwXc8Xpsrs3jbTZC/rg6DuU0JkoVZMapUNyF9d0rhOsDz7UcCZOIoLM6CrA3Wr7bHmW2fnQbsfTeKsDPHr1RO2H2iz/FaH6qNVdaq1M6uLAjMhb/dvTk4GF3CDnudhRpeocg/reP7JaBwcIR6jMAklCGIYpTR/GYcAKDeCH5Az3wouJd67Z7audIb3AAL9TOcqN+0tYIt/fSZyatrN5wRQv/TmNPTq+srjTIsL4X0+WoG7g/dZ+hGG5o0yvjASNWrT7M7GH6rAp1hn+efQuAxnrRmGCrmn6HTtp4nWvypSPxaH9l540oBIERnOVoq7tQLimfCEiB5lo396d1OFuwPP0WwVPeJefkL9WR//6sWLJff8=
+  - secure: Re020jVvIGFkfkhflh1LHXG142WxHUL+E3+Kp38uPH694GqYK2YM1rX+nOGJglcADtkMooZSIWKmQC9bVRzhminnZR8Fu/PIJnRvp6YzjLwvvt8nVm03zt36On9FXTOtjW+NmBFgGkpQ+tGLya9mqVKH1aTvY0LbUrgW1d3gcmcEji5IkgwQ1zv79nUT67NmuzNy6iDriI2xv2laAnyH2tyd5e85P3E5WQKEqk3CCDethUnauadH9lPHfQRaTE3EL1ODkw0ZUqAQnrSA4rXhZyV4iutotn7qx+ApIf7K40OIHPonCKDyP/13wMItHLclNyYRI7f5Abqw6HuKnyGNZhqfKZyF42sHOdlFUSvBPw1lFDp+0rfqmgLI4jb3dDEU5+KGV7j5KPqGiuP++94z4oFfqeytkdgOySr8cVlxKTe8BFhZIdx+OOpaF6rNX/8N3FV1ew2HlwHgRO30inUCwv80aQj4fgmA1pylnij1u1xOQNzW1EB3k+tRuRmFB3xxv+cifwZuOCQ71sAcOf7eaStOFyX0YcfAsY1L2jwJxhYV4PqoOaVFcwBDDXlKEWgHukQusLg7dhJfDaSsRgJwoEFZp++yZaxet8ffRJTJpsKFXEo4v+L85O4Sjop0I3HhxisdNPwM4Jb9gG0U1eLm1X0e6Buu40b9yWDIffAYs6g=
 cache:
   yarn: true
   directories:
@@ -14,11 +15,20 @@ sudo: required
 branches:
   only:
   - master
+addons:
+  code_climate:
+    repo_token: CODE_CLIMATE_TOKEN
 before_script:
 - yarn global add @angular/cli
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
 - ng lint
-- ng test --watch=false --browsers=ChromeHeadless
+- ng test --watch=false --browsers=ChromeHeadless --code-coverage
+after_script:
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT" -t lcov
 before_deploy:
 - yarn global add netlify-cli
 - ng build --prod

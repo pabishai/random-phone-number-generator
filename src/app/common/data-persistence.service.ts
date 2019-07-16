@@ -8,7 +8,7 @@ import { Observable, pipe } from 'rxjs';
 })
 export class DataPersistenceService {
 
-  private _dataStoreUrl = '/.netlify/functions/dataStore';
+  private _dataStoreUrl = '/.netlify/functions/datastore';
   constructor(private _http: HttpClient) {}
 
   getPhoneNumbers() {

@@ -36,6 +36,7 @@ export class PhoneNumbersComponent implements OnInit {
         'Please enter the number of phone numbers to generate', 'close',
         {verticalPosition: top}
       );
+      return;
     }
 
     let i: number;

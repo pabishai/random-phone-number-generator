@@ -42,9 +42,7 @@ exports.handler = (event, context, callback) => {
       fs.write(fd, event.body, (error, data) => {
         if(error){
           throw error;
-        }
-        console.log(data)
-        
+        }        
       });
     });
     returnData.statusCode = 201;

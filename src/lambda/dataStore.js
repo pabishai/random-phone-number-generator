@@ -1,11 +1,11 @@
 import fs from 'fs';
-
 import path from "path";
 
 /**
  *  This is a lambda function to read and write to JSON files
  */
 exports.handler = (event, context, callback) => {
+  console.log(event);
   // Filename is the text phone_numbers_timestamp
   const timestamp = new Date().valueOf()
   const fileName = "phone_numbers_".concat(timestamp, ".json");

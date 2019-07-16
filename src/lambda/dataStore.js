@@ -1,12 +1,11 @@
 import fs from 'fs';
-import path from "path";
 
 /**
  *  This is a lambda function to read and write to JSON files
  */
 exports.handler = (event, context, callback) => {
   // Filename is the text phone_numbers_timestamp
-  const filePath = path.join('.netlify', 'data.json');
+  const filePath = 'data.json';
   let returnData = {
     statusCode: 200,
     body: 'This function reads and writes phone data from JSON files use GET or POST',

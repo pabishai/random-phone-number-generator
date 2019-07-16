@@ -1,0 +1,27 @@
+<div class="number-input">
+    <input type="number" min=1 max=10000 [(ngModel)]="numberOfPhoneNumbers" required placeholder="{{placeHolderText}}"/>
+    <input type="submit" (click)="generatePhoneNumbers()"/>
+</div>
+<div *ngIf="phoneNumbers">
+    <table mat-table [dataSource]="phoneNumbers">
+        <!-- Create column for index -->
+        <ng-container matColumnDef="index">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let phoneNumber">
+                {{phoneNumber.index}}
+            </td>
+        </ng-container>
+        
+        <!-- create column for the phone numbers -->
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+            <td mat-cell *matCellDef="let phoneNumber">
+                {{phoneNumber.number}}
+            </td>
+        </ng-container>
+
+        <!-- which columns are to be rendered in header and data rows -->
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    </table>
+</div>

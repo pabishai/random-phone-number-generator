@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  google: {
+    client_id: '367686070815-affaceeanechsuimub8uojk1ig18lm00.apps.googleusercontent.com',
+    project_id: 'quickstart-1563217338389',
+    auth_uri: 'https://accounts.google.com/o/oauth2/auth',
+    token_uri: 'https://oauth2.googleapis.com/token',
+    auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+    client_secret: '6XIEYJSriV67Hi8RKiHZJmMR',
+    redirect_uris: ['urn:ietf:wg:oauth:2.0:oob', 'http://localhost'],
+    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly']
+  }
 };
 
 /*

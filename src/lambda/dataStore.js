@@ -5,7 +5,6 @@ import path from "path";
  *  This is a lambda function to read and write to JSON files
  */
 exports.handler = (event, context, callback) => {
-  console.log(event);
   // Filename is the text phone_numbers_timestamp
   const timestamp = new Date().valueOf()
   const fileName = "phone_numbers_".concat(timestamp, ".json");
@@ -36,17 +35,20 @@ exports.handler = (event, context, callback) => {
 
   // Write to file on POST request
   if(event.httpMethod === 'POST') {
-    console.log(event);
     fs.open(filePath, 'wx', (err, fd) => {
       if(err) {
         throw err;
       }
-      returnData.statusCode = 201;
-      returnData.body = timestamp;
-      fs.write(fd, event.body);
-
+      fs.write(fd, event.body, (error, data) => {
+        if(error){
+          throw error;
+        }
+        console.log(data)
+        
+      });
     });
-
+    returnData.statusCode = 201;
+    returnData.body = timestamp.toString();
   }
 
   callback(null, returnData);

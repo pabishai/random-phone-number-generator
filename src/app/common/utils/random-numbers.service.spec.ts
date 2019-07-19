@@ -3,10 +3,19 @@ import { TestBed } from '@angular/core/testing';
 import { RandomNumbersService } from './random-numbers.service';
 
 describe('RandomNumbersService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let randomNumberService: RandomNumbersService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [RandomNumbersService]});
+    randomNumberService = TestBed.get(RandomNumbersService);
+  });
 
   it('should be created', () => {
-    const service: RandomNumbersService = TestBed.get(RandomNumbersService);
-    expect(service).toBeTruthy();
+    expect(randomNumberService).toBeTruthy();
+  });
+
+  it('should generate an array of numbers', (done: DoneFn) => {
+      randomNumberService.generatePhoneNumbers(5);
+      expect(randomNumberService.formattedPhoneNumber.length).toBe(5);
+      done();
   });
 });

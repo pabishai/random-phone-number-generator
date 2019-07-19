@@ -2,19 +2,27 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatTableModule, MatSnackBarModule } from '@angular/material';
+import {
+  MatTableModule,
+  MatInputModule,
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher,
+  MatCardModule,
+  MatGridListModule,
+  MatSortModule,
+  MatIconModule} from '@angular/material';
 
-import { PhoneNumbersComponent } from './phone-numbers/phone-numbers.component';
+import { GenerateNumbersComponent } from './generate-numbers/generate-numbers.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PhoneNumbersComponent
+    GenerateNumbersComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,9 +31,14 @@ import { PhoneNumbersComponent } from './phone-numbers/phone-numbers.component';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MatSnackBarModule
+    MatInputModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSortModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

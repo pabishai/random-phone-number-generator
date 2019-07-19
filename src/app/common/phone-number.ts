@@ -1,4 +1,4 @@
-export interface PhoneNumbers {
+export interface PhoneNumber {
     index: number;
     number: string;
 }

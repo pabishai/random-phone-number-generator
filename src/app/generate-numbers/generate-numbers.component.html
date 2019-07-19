@@ -1,4 +1,4 @@
-<div class="flex-box">
+<div class="flex-box flex-start">
     <!-- Form for user to input number of phone numbers to generate -->
     <mat-card class="w-30">
         <mat-card-title class="text-center mb-2">
@@ -31,6 +31,9 @@
     <!-- Display the generated numbers -->
     <div class="w-60" [hidden]="!dataSource.data.length">
         <div class="flex-box pb-2">
+            <mat-card class="min">
+                Total Phone Numbers: {{dataSource.data.length}}
+            </mat-card>
             <mat-card class="max">
                 Max Number: {{maxPhoneNumber}}
             </mat-card>

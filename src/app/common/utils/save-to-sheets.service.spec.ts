@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SnackbarService } from './snackbar.service';
+import { SaveToSheetsService } from './save-to-sheets.service';
 
-describe('SnackbarService', () => {
+describe('SaveToSheetsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: SnackbarService = TestBed.get(SnackbarService);
+    const service: SaveToSheetsService = TestBed.get(SaveToSheetsService);
     expect(service).toBeTruthy();
   });
 });

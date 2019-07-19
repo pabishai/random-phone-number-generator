@@ -1,3 +1,0 @@
-[build]
-  Functions = "functions"
-  Command = "yarn build"
